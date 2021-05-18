@@ -1,8 +1,10 @@
 const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
 
 const app = express();
+dotenv.config();
 
 // Middleware
 app.use(morgan("dev"));
@@ -19,16 +21,13 @@ app.post("/", (req, res) => {
 });
 
 app.listen(3000, (err) => {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log(`Listening on port 3000`);
-  }
+  if (err) console.log(err);
+  else console.log(`Listening on port 3000`);
 });
 
 // Connect to the database
 mongoose.connect(
-  "mongodb+srv://root:8uSbn21Dx825h6Uf@oneshop.m3j7l.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  process.env.DATABASE,
   { useNewUrlParser: true, useUnifiedTopology: true },
   (err) => {
     if (err) console.log(err);
