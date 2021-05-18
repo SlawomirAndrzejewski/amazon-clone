@@ -1,0 +1,23 @@
+{
+  "name": "oneshop",
+  "version": "1.0.0",
+  "description": "OneShop template",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SlawomirAndrzejewski/oneshop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SlawomirAndrzejewski/oneshop/issues"
+  },
+  "homepage": "https://github.com/SlawomirAndrzejewski/oneshop#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  }
+}
