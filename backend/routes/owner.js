@@ -3,7 +3,7 @@ const Owner = require("../models/owner");
 
 router.get("/owners", async (req, res) => {
     try {
-        let owners = await Category.find()
+        let owners = await Owner.find()
 
         res.json({
             success: true,
