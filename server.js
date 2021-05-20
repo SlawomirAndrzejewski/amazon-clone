@@ -2,9 +2,6 @@ const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const os = require("os");
-
-const User = require("./models/user");
 
 const app = express();
 dotenv.config();
@@ -15,8 +12,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // API routes
-const productRoutes = require("./routes/product");
-app.use("/api", productRoutes);
+const productRoute = require("./routes/product");
+app.use("/api", productRoute);
+
+const categoryRoute = require("./routes/category")
+app.use("/api", categoryRoute)
+
+const ownersRoute = require("./routes/owner")
+app.use("/api", ownersRoute)
 
 // Start server
 app.listen(3000, (err) => {
