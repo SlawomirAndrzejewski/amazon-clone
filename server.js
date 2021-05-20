@@ -2,6 +2,9 @@ const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const os = require("os");
+
+const User = require("./models/user");
 
 const app = express();
 dotenv.config();
@@ -12,14 +15,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // API routes
-app.get("/", (req, res) => {
-  res.json("Hello Sławomir!");
-});
+const productRoutes = require("./routes/product");
+app.use("/api", productRoutes);
 
-app.post("/", (req, res) => {
-  console.log(req.body.name);
-});
-
+// Start server
 app.listen(3000, (err) => {
   if (err) console.log(err);
   else console.log(`Listening on port 3000`);
