@@ -27,7 +27,7 @@ app.listen(2000, (err) => {
   else console.log(`Listening on port 3000`);
 });
 
-// Connect to the database
+// Connect to the database !
 mongoose.connect(
   process.env.DATABASE,
   { useNewUrlParser: true, useUnifiedTopology: true },
