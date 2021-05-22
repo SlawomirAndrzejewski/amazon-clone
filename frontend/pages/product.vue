@@ -80,42 +80,23 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
-  data() {
-    return {
-      categories: [],
-      owners: []
-    };
-  },
+  async asyncData({ $axios }) {
+    try {
+      let categories = $axios.$get("http://localhost:2000/api/categories");
+      let owners = $axios.$get("http://localhost:2000/api/owners");
 
-  mounted() {
-    this.getCategories();
-    this.getOwners();
-  },
+      const [categoriesResponse, ownersResponse] = await Promise.all([
+        categories,
+        owners
+      ]);
 
-  methods: {
-    async getCategories() {
-      await axios
-        .get("http://localhost:2000/api/categories")
-        .then(res => {
-          this.categories = res.data.categories;
-        })
-        .catch(err => {
-          console.log(err.message);
-        });
-    },
-
-    async getOwners() {
-      await axios
-        .get("http://localhost:2000/api/owners")
-        .then(res => {
-          this.owners = res.data.owners;
-        })
-        .catch(err => {
-          console.log(err.message);
-        });
+      return {
+        categories: categoriesResponse.categories,
+        owners: ownersResponse.owners
+      };
+    } catch (err) {
+      console.log(err);
     }
   }
 };
