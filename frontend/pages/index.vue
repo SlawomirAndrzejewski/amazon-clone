@@ -11,8 +11,8 @@
           <div class="a-spacing-large"></div>
           <!-- Button -->
           <a href="/product" class="a-button-buy-again">Add a new product</a>
-          <a href="#" class="a-button-history">Add a new category</a>
-          <a href="#" class="a-button-history">Add a new owner</a>
+          <a href="/category" class="a-button-history">Add a new category</a>
+          <a href="/owner" class="a-button-history">Add a new owner</a>
         </div>
       </div>
     </div>
@@ -47,9 +47,9 @@
                 <i class="fas fa-star"></i>
               </a>
               <span class="a-letter-space"></span>
-              <span class="a-color-tertiary a-size-small asin-reviews"
-                >(9000)</span
-              >
+              <span class="a-color-tertiary a-size-small asin-reviews">{{
+                product.stockQuantity
+              }}</span>
             </div>
             <!-- Product price -->
             <div class="a-row">
