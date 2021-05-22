@@ -70,29 +70,14 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
-  data() {
-    return {
-      products: []
-    };
-  },
-  mounted() {
-    this.getProducts();
-  },
-  methods: {
-    async getProducts() {
-      await axios
-        .get("http://localhost:2000/api/products")
-        .then(res => {
-          this.products = res.data.products;
-          // console.log(this.products);
-        })
-        .catch(err => {
-          console.log(err.message);
-        });
-    }
+  async asyncData({ $axios }) {
+    try {
+      let response = await $axios.$get("http://localhost:2000/api/products");
+      return {
+        products: response.products
+      };
+    } catch (err) {}
   }
 };
 </script>
