@@ -2,9 +2,12 @@ const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+var cors = require("cors");
 
 const app = express();
 dotenv.config();
+
+app.use(cors());
 
 // Middleware
 app.use(morgan("dev"));
@@ -15,11 +18,11 @@ app.use(express.json());
 const productRoute = require("./routes/product");
 app.use("/api", productRoute);
 
-const categoryRoute = require("./routes/category")
-app.use("/api", categoryRoute)
+const categoryRoute = require("./routes/category");
+app.use("/api", categoryRoute);
 
-const ownersRoute = require("./routes/owner")
-app.use("/api", ownersRoute)
+const ownersRoute = require("./routes/owner");
+app.use("/api", ownersRoute);
 
 // Start server
 app.listen(2000, (err) => {

@@ -18,6 +18,7 @@
   "homepage": "https://github.com/SlawomirAndrzejewski/oneshop#readme",
   "dependencies": {
     "aws-sdk": "^2.909.0",
+    "cors": "^2.8.5",
     "dotenv": "^9.0.2",
     "express": "^4.17.1",
     "mongoose": "^5.12.9",
