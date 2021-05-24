@@ -39,6 +39,10 @@ export default {
     "@nuxtjs/axios",
     "@nuxtjs/pwa"
   ],
+  axios: {
+    proxy: true,
+    baseURL: "http://localhost:2000/api"
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
