@@ -10,9 +10,15 @@
           </h1>
           <div class="a-spacing-large"></div>
           <!-- Button -->
-          <a href="/product" class="a-button-buy-again">Add a new product</a>
-          <a href="/category" class="a-button-history">Add a new category</a>
-          <a href="/owner" class="a-button-history">Add a new owner</a>
+          <nuxt-link to="/product" class="a-button-buy-again"
+            >Add a new product</nuxt-link
+          >
+          <nuxt-link to="/category" class="a-button-history"
+            >Add a new category</nuxt-link
+          >
+          <nuxt-link to="/owner" class="a-button-history"
+            >Add a new owner</nuxt-link
+          >
         </div>
       </div>
     </div>
@@ -22,7 +28,7 @@
     <div class="container-fluid browsing-history">
       <div class="row">
         <div
-          v-for="product in products"
+          v-for="(product, index) in products"
           :key="product._id"
           class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-6 br bb"
         >
@@ -59,8 +65,17 @@
             </div>
             <!-- Product buttons -->
             <div class="a-row">
-              <a href="#" class="a-button-history margin-right-10">Update</a>
-              <a href="#" class="a-button-history margin-right-10">Delete</a>
+              <nuxt-link
+                :to="`/products/${product._id}`"
+                class="a-button-history margin-right-10"
+                >Update</nuxt-link
+              >
+              <a
+                href="/"
+                class="a-button-history margin-right-10"
+                @click="deleteProduct(product._id, index)"
+                >Delete</a
+              >
             </div>
           </div>
         </div>
@@ -75,10 +90,24 @@ export default {
     try {
       let response = await $axios.$get("http://localhost:2000/api/products");
       return {
-        products: response.products
+        products: response.products,
       };
     } catch (err) {}
-  }
+  },
+
+  methods: {
+    async deleteProduct(id, index) {
+      try {
+        let response = await this.$axios.$delete(
+          `http://localhost:2000/api/products/${id}`
+        );
+
+        this.products.splice(index, 1);
+      } catch (err) {
+        console.log(err);
+      }
+    },
+  },
 };
 </script>
 
