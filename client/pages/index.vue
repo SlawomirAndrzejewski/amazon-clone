@@ -55,7 +55,7 @@
                         <span class="a-size-small a-color-secondary">by</span>
                         <span class="a-size-small a-color-secondary">
                           <a href="#" class="a-link-normal a-text-normal"
-                            >JK Rowling</a
+                            >{{ product.owner.name }}</a
                           >
                         </span>
                       </div>
@@ -142,7 +142,7 @@ export default {
   async asyncData({ $axios }) {
     try {
       let response = await $axios.$get("/products");
-
+      console.log(response)
       return {
         products: response.products,
       };

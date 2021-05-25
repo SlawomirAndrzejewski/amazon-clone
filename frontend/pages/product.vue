@@ -154,7 +154,7 @@ export default {
         "http://localhost:2000/api/products",
         data
       );
-
+console.log(result)
       this.$router.push("/");
     }
   }

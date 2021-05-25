@@ -25,6 +25,8 @@ const ownersRoute = require("./routes/owner");
 app.use("/api", ownersRoute);
 
 // Start server
+// const PORT = 2000;
+
 app.listen(2000, (err) => {
   if (err) console.log(err);
   else console.log(`Listening on port 2000`);
