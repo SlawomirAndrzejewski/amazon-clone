@@ -7,7 +7,7 @@
         <ul class="a-unordered-list a-horizontal a-size-small">
           <li>
             <span class="a-list-item">
-              <a class="a-link-normal a-color-tertiary" href="#">Category</a>
+              <a class="a-link-normal a-color-tertiary" href="#">{{ product.category.type }}</a>
             </span>
           </li>
           <li>
@@ -15,7 +15,7 @@
           </li>
           <li>
             <span class="a-list-item">
-              <a class="a-link-normal a-color-tertiary" href="#">Product Title</a>
+              <a class="a-link-normal a-color-tertiary" href="#">{{ product.title }}</a>
             </span>
           </li>
         </ul>
@@ -77,7 +77,7 @@
               <!-- Product Title -->
               <div class="titleDiv">
                 <h1 class="productTitle">
-                  <span class="largeTitle">Harry Potter</span>
+                  <span class="largeTitle">{{ product.title }}</span>
                   <span class="smallTitle">Paperback</span>
                 </h1>
               </div>
@@ -346,3 +346,20 @@
     </div>
   </main>
 </template>
+
+<script>
+export default {
+  async asyncData({ $axios, params }) {
+    try {
+      let response = await $axios.$get(`/products/${params.id}`)
+      console.log(response)
+
+      return {
+        product: response.product
+      }
+    } catch (err) {
+      console.log(err.message)
+    }
+  }
+}
+</script>
